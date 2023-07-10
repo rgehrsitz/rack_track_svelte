@@ -126,19 +126,27 @@
       <SidebarGroup>
         <SidebarItem
           label="Equipment Hierarchy"
-          on:click={() => (currentScreen = "EquipmentHierarchy")}
+          on:click={() => {
+            currentScreen = "EquipmentHierarchy";
+          }}
         />
         <SidebarItem
           label="Configuration Snapshot"
-          on:click={() => (currentScreen = "ConfigurationSnapshot")}
+          on:click={() => {
+            currentScreen = "ConfigurationSnapshot";
+          }}
         />
         <SidebarItem
           label="Configuration Diff"
-          on:click={() => (currentScreen = "ConfigurationDiff")}
+          on:click={() => {
+            currentScreen = "ConfigurationDiff";
+          }}
         />
         <SidebarItem
           label="Update Information"
-          on:click={() => (currentScreen = "UpdateInformation")}
+          on:click={() => {
+            currentScreen = "UpdateInformation";
+          }}
         />
       </SidebarGroup>
     </SidebarWrapper>
