@@ -1,6 +1,12 @@
 <script lang="ts">
   import Greet from "./lib/Greet.svelte";
-  import { Alert } from "flowbite-svelte";
+
+  import EquipmentHierarchy from "./screens/EquipmentHierarchy.svelte";
+  import ConfigurationSnapshot from "./screens/ConfigurationSnapshot.svelte";
+  import ConfigurationDiff from "./screens/ConfigurationDiff.svelte";
+  import UpdateInformation from "./screens/UpdateInformation.svelte";
+
+  let currentScreen = "EquipmentHierarchy";
   import {
     Footer,
     FooterBrand,
@@ -118,42 +124,38 @@
       divClass="overflow-y-auto py-4 px-3 rounded dark:bg-gray-800"
     >
       <SidebarGroup>
-        <SidebarItem label="Home" href="/" on:click={toggleSide} />
         <SidebarItem
-          label="About"
-          href={`/pages/`}
-          {spanClass}
-          on:click={toggleSide}
+          label="Equipment Hierarchy"
+          on:click={() => (currentScreen = "EquipmentHierarchy")}
         />
-        <SidebarItem label="Dashboard">
-          <svelte:fragment slot="icon">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="currentColor"
-              class="w-6 h-6"
-              ><path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M10.5 6a7.5 7.5 0 107.5 7.5h-7.5V6z"
-              /><path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M13.5 10.5H21A7.5 7.5 0 0013.5 3v7.5z"
-              /></svg
-            >
-          </svelte:fragment>
-        </SidebarItem>
+        <SidebarItem
+          label="Configuration Snapshot"
+          on:click={() => (currentScreen = "ConfigurationSnapshot")}
+        />
+        <SidebarItem
+          label="Configuration Diff"
+          on:click={() => (currentScreen = "ConfigurationDiff")}
+        />
+        <SidebarItem
+          label="Update Information"
+          on:click={() => (currentScreen = "UpdateInformation")}
+        />
       </SidebarGroup>
     </SidebarWrapper>
   </Sidebar>
 </Drawer>
 
 <div class="flex px-4 mx-auto w-full">
-  <main class="lg:ml-72 w-full mx-auto">
-    <Greet />
+  <main>
+    {#if currentScreen === "EquipmentHierarchy"}
+      <EquipmentHierarchy />
+    {:else if currentScreen === "ConfigurationSnapshot"}
+      <ConfigurationSnapshot />
+    {:else if currentScreen === "ConfigurationDiff"}
+      <ConfigurationDiff />
+    {:else if currentScreen === "UpdateInformation"}
+      <UpdateInformation />
+    {/if}
   </main>
 </div>
 
